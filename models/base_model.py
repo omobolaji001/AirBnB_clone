@@ -3,6 +3,7 @@
 """import modules here """
 import uuid
 from datetime import datetime
+import models
 
 
 class BaseModel:
@@ -18,15 +19,17 @@ class BaseModel:
             for k, v in kwargs.items():
                 if k == '__class__':
                     pass
-                elif k == 'id':
-                    self.id = v
                 elif k == 'created_at':
                     self.created_at = datetime.fromisoformat(v)
                 elif k == 'updated_at':
                     self.updated_at = datetime.fromisoformat(v)
                 else:
-                    self.id = str(uuid.uuid4())
-                    self.created_at = datetime.now()
+                    self.__dict__[k] = v
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """printing the class """
@@ -35,6 +38,7 @@ class BaseModel:
     def save(self):
         """ updates attribute 'updated_at' with the current datetime """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """ returns a dictionary containing all keys/values of __dict__"""
