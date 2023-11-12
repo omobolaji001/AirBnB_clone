@@ -20,6 +20,10 @@ class HBNBCommand(cmd.Cmd):
         """End of File command to exit the program"""
         return True
 
+    def emptyline(self):
+        """does nothing when the line is empty"""
+        pass
+
     def do_create(self, line):
         """creates a new instance of BaseModel, and prints the id.
         """
