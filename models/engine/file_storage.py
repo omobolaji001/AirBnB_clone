@@ -34,7 +34,10 @@ class FileStorage:
         try:
             with open(type(self).__file_path, 'r', encoding='utf-8') as file:
                 json_load = json.load(file)
-            for k, v in json_load.items():
-                type(self).__objects[k] = BaseModel(**v)
+
+            for v in json_load.values():
+                model_name = v["__class__"]
+                self.new(eval(model_name)(**v))
+
         except FileNotFoundError:
             pass
