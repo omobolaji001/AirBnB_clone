@@ -6,7 +6,7 @@ from models.base_model import BaseModel
 class Place(BaseModel):
     """Public class Attribute """
     city_id = ""
-    uder_id = ""
+    user_id = ""
     name = ""
     description = ""
     number_room = 0
