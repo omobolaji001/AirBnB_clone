@@ -10,6 +10,7 @@ from models.city import City
 from models.review import Review
 from models.amenity import Amenity
 
+
 class FileStorage:
     """ serializes instances to JSON file and
     deserializes JSON file to instances
