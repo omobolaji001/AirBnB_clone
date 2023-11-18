@@ -266,7 +266,7 @@ e952b772-80a5-41e9-b728-6bc4dc5c21b4
     <summary>Oyebode Habeeb Omobolaji</summary>
     <ul>
     <li><a href="https://www.github.com/omobolaji001">Github</a></li>
-    <li><a href="https://www.twitter.com/Hormoborlahjy">Twitter</a></li>
+    <li><a href="https://www.twitter.com/Hormorborlahjy">Twitter</a></li>
     <li><a href="mailto:omobolajiolayiwola11@gmail.com">e-mail</a></li>
     </ul>
 </details>
