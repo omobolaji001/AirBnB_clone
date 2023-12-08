@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ The Console """
 import cmd
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.city import City
@@ -34,6 +35,15 @@ class HBNBCommand(cmd.Cmd):
         """does nothing when the line is empty"""
         pass
 
+    def precmd(self, line):
+        pattern = re.search(r"[a-zA-Z]+\.[a-z]+\(\)", line)
+        if pattern:
+            line = line.replace("()", "")
+            line = line.split(".")
+            line = f"{line[1]} {line[0]}"
+
+        return cmd.Cmd.precmd(self, line)
+
     def do_create(self, line):
         """creates a new instance of BaseModel, and prints the id.
         """
@@ -45,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print(eval(args[0])().id)
-            storage.save()
+        storage.save()
 
     def do_show(self, line):
         """prints the string representation of an instance
