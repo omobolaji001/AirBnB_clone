@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """Public clss attribute """
+    """Public class attribute """
     email = ""
     password = ""
     first_name = ""
