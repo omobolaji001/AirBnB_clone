@@ -45,7 +45,12 @@ class HBNBCommand(cmd.Cmd):
         one_arg = re.search(r"[a-zA-Z]+\.[a-z]+\(.+\)", line)
         three_args = re.search(r"[a-zA-Z]+\.[a-z]+\(.+?\, .+?\, .+\)", line)
 
-        if no_arg:
+        if three_args:
+            line = line.replace(".", " ").replace("(", " ").replace(")", "")\
+                    .replace("\'", "").replace("\"", "").replace(",", "")
+            line = line.split()
+            line = f"{line[1]} {line[0]} {line[2]} {line[3]} {line[4]}"
+        elif no_arg:
             line = line.replace("()", "")
             line = line.split(".")
             line = f"{line[1]} {line[0]}"
@@ -54,11 +59,6 @@ class HBNBCommand(cmd.Cmd):
                     .replace("\'", "").replace("\"", "")
             line = line.split()
             line = f"{line[1]} {line[0]} {line[2]}"
-        elif three_args:
-            line = line.replace(".", " ").replace("(", " ").replace(")", "")\
-                    .replace("\'", "").replace("\"", "").replace(",", "")
-            line = line.split()
-            line = f"{line[1]} {line[0]} {line[2]} {line[3]} {line[4]}"
 
         return cmd.Cmd.precmd(self, line)
 
